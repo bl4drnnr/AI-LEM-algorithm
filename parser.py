@@ -45,5 +45,3 @@ def parseInputData():
         for attr, value in record.items():
             record[attr] = ALL_POSSIBLE_ATTRIBUTES[attr][value]
     return DATA
-
-print(parseInputData())

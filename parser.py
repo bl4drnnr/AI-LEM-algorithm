@@ -30,7 +30,7 @@ def getParsedPairs():
     parsedAttributes = []
     for attr, value in possibleAttributes.items():
         for item in list(value):
-            parsedAttributes.append((attr, item))
+            parsedAttributes.append((attr, possibleAttributes[attr][item]))
     return parsedAttributes
 
 

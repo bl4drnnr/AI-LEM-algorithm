@@ -7,4 +7,4 @@ GENERATED_RULES = []
 PARSED_PAIRS = getParsedPairs()
 
 for x in range(INPUT_DATA_LENGTH):
-    print()
+    print(DATA[x])

@@ -1,0 +1,64 @@
+{
+  "inputdata": [
+    {
+      "Typ": "duzy",
+      "Cena": "akceptowalna",
+      "Predkosc": "przecietna",
+      "Zuzycie": "srednie"
+    },
+    {
+      "Typ": "duzy",
+      "Cena": "akceptowalna",
+      "Predkosc": "duza",
+      "Zuzycie": "srednie"
+    },
+    {
+      "Typ": "duzy",
+      "Cena": "wysoka",
+      "Predkosc": "przecietna",
+      "Zuzycie": "wysokie"
+    },
+    {
+      "Typ": "duzy",
+      "Cena": "wysoka",
+      "Predkosc": "duza",
+      "Zuzycie": "wysokie"
+    },
+    {
+      "Typ": "kompakt",
+      "Cena": "akceptowalna",
+      "Predkosc": "przecietna",
+      "Zuzycie": "srednie"
+    },
+    {
+      "Typ": "kompakt",
+      "Cena": "wysoka",
+      "Predkosc": "duza",
+      "Zuzycie": "srednie"
+    },
+    {
+      "Typ": "kompakt",
+      "Cena": "wysoka",
+      "Predkosc": "wolny",
+      "Zuzycie": "srednie"
+    },
+    {
+      "Typ": "maly",
+      "Cena": "akceptowalna",
+      "Predkosc": "przecietna",
+      "Zuzycie": "male"
+    },
+    {
+      "Typ": "maly",
+      "Cena": "wysoka",
+      "Predkosc": "mala",
+      "Zuzycie": "srednie"
+    },
+    {
+      "Typ": "duzy",
+      "Cena": "wysoka",
+      "Predkosc": "mala",
+      "Zuzycie": "wysokie"
+    }
+  ]
+}

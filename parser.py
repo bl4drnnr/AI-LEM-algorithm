@@ -25,6 +25,15 @@ def getDecisionAttributes():
     return decisionAttributes
 
 
+def getParsedPairs():
+    possibleAttributes = getAllPossibleAttributes()
+    parsedAttributes = []
+    for attr, value in possibleAttributes.items():
+        for item in list(value):
+            parsedAttributes.append((attr, item))
+    return parsedAttributes
+
+
 def parseInputData():
     # Get all possible attributes and classes
     for record in DATA:

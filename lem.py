@@ -6,8 +6,13 @@ INPUT_DATA_LENGTH = len(DATA)
 GENERATED_RULES = []
 PARSED_PAIRS = getParsedPairs()
 
-parsedRecordsAndRules = []
+parsedRecordsAndPairs = []
 
 for x in range(INPUT_DATA_LENGTH):
     for pair in PARSED_PAIRS:
-        print()
+        if DATA[x][list(pair)[0]] == pair[list(pair)[0]]:
+            parsedName = str(list(pair)[0]) + str(pair[list(pair)[0]])
+            parsedRecordsAndPairs.append({parsedName: DATA[x]})
+
+for x in parsedRecordsAndPairs:
+    print(x)

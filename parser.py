@@ -6,10 +6,6 @@ DATA = DATA['inputdata']
 ALL_POSSIBLE_ATTRIBUTES = {}
 
 
-def getData():
-    return DATA
-
-
 def getAllPossibleAttributes():
     return ALL_POSSIBLE_ATTRIBUTES
 
@@ -18,19 +14,13 @@ def getKeyAttribute():
     return list(DATA[0])[-1]
 
 
-def getDecisionAttributes():
-    decisionAttributes = {}
-    for record in list(DATA[0])[:-1]:
-        decisionAttributes[record] = 0
-    return decisionAttributes
-
-
 def getParsedPairs():
     possibleAttributes = getAllPossibleAttributes()
     parsedAttributes = []
     for attr, value in possibleAttributes.items():
-        for item in list(value):
-            parsedAttributes.append({attr: possibleAttributes[attr][item]})
+        if attr != getKeyAttribute():
+            for item in list(value):
+                parsedAttributes.append({attr: possibleAttributes[attr][item]})
     return parsedAttributes
 
 

@@ -36,5 +36,3 @@ for attr, value in Bs.items():
     for k, v in TG.items():
         oneKeyPair = v
         res = lookForRuleAndRecordMatches(oneKeyPair, oneRule)
-        print(res)
-    print()

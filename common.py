@@ -5,6 +5,6 @@ def lookForRuleAndRecordMatches(record, rule):
         for y in rule:
             if list(x)[0] == list(y)[0]:
                 t.append(list(x)[0])
-                r = x[list(x)[0]]
+                r = len(record)
 
-    return [len(t), len(r)]
+    return [len(t), r]

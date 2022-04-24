@@ -1,4 +1,4 @@
-from parser import getKeyAttribute
+from parser import getKeyAttribute, deparseName
 KEY_ATTRIBUTE = getKeyAttribute()
 
 
@@ -53,4 +53,6 @@ def extractIndexes(arr):
 
 def generateRule(result, records):
     rule = "IF "
+    deparsedName = deparseName(records['type'])
+    print("deparsedName: " + str(deparsedName))
     print(result, records)

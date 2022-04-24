@@ -29,7 +29,15 @@ def parseName(name):
 
 
 def deparseName(name):
-    return
+    possibleAttributes = getAllPossibleAttributes()
+    deparsedName = []
+    for attr, value in possibleAttributes.items():
+        if attr == name.split('_')[0]:
+            deparsedName.append(attr)
+            for a, v in value.items():
+                if v == int(name.split('_')[1]):
+                    deparsedName.append(a)
+    return deparsedName
 
 
 def parseInputData():

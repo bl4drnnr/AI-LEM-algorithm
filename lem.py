@@ -34,13 +34,11 @@ for x in range(INPUT_DATA_LENGTH):
 for attr, value in Bs.items():
     oneRule = value
     G = Bs
-    P = []
-    L = []
     PL = []
     for k, v in TG.items():
         oneKeyPair = v
         res = lookForRuleAndRecordMatches(oneKeyPair, oneRule)
         PL.append({'pl': res, 'records': oneKeyPair})
-        P.append(res[0])
 
-    mostRelatedPairs = getPL(P, L, PL)
+    mostRelatedPairs = getPL(PL)
+    print(mostRelatedPairs)

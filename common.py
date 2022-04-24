@@ -54,5 +54,6 @@ def extractIndexes(arr):
 def generateRule(result, records):
     rule = "IF "
     deparsedName = deparseName(records['type'])
-    print("deparsedName: " + str(deparsedName))
-    print(result, records)
+    rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
+    rule += " THEN " + str(KEY_ATTRIBUTE) + " = " + str(result)
+    return rule

@@ -22,8 +22,6 @@ for x in range(INPUT_DATA_LENGTH):
             else:
                 TG[parsedName].append({x + 1: DATA[x]})
 
-for x, y in TG.items():
-    print(x, y)
 
 for x in range(INPUT_DATA_LENGTH):
     for attr, value in ALL_CLASSES.items():
@@ -33,11 +31,8 @@ for x in range(INPUT_DATA_LENGTH):
             else:
                 Bs[attr].append({x + 1: DATA[x]})
 
-for attr, value in TG.items():
-    oneKeyValuePairs = value
-    for k, v in Bs.items():
-        oneClassRecords = v
-        lookForRuleAndRecordMatches(oneKeyValuePairs, oneClassRecords)
-
 for attr, value in Bs.items():
-    print(attr, value)
+    oneRule = value
+    for k, v in TG.items():
+        oneKeyPair = v
+        lookForRuleAndRecordMatches(oneKeyPair, oneRule)

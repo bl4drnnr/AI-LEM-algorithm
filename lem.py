@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs
-from common import lookForRuleAndRecordMatches
+from common import lookForRuleAndRecordMatches, getPL
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -44,14 +44,7 @@ for attr, value in Bs.items():
         PL.append({'pl': res, 'records': oneKeyPair})
         P.append(res[0])
 
-    P = max(P)
-    for item in PL:
-        if item['pl'][0] == P:
-            L.append(item['pl'][1])
-    L = min(L)
-    for item in PL:
-        if item['pl'][0] == P and item['pl'][1] == L:
-            mostRelatedPairs.append(item)
+    mostRelatedPairs = getPL(P, L, PL)
 
     iterator = 0
     for item in mostRelatedPairs[0]['records']:
@@ -60,13 +53,6 @@ for attr, value in Bs.items():
                 if a == list(item)[0]:
                     iterator += 1
     if iterator == len(mostRelatedPairs[0]['records']):
-        ruleGenerated = True
-        for k, v in TG.items():
-            for item in v:
-                for it in mostRelatedPairs[0]['records']:
-                    if it != item:
-                        ruleGenerated = False
-        if ruleGenerated:
-            print(mostRelatedPairs[0]['records'])
+        print(mostRelatedPairs[0]['records'])
 
     print()

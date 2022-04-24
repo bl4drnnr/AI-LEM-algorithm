@@ -18,13 +18,6 @@ def getKeyAttribute():
     return list(DATA[0])[-1]
 
 
-def getDecisionAttributes():
-    decisionAttributes = {}
-    for record in list(DATA[0])[:-1]:
-        decisionAttributes[record] = 0
-    return decisionAttributes
-
-
 def getParsedPairs():
     possibleAttributes = getAllPossibleAttributes()
     parsedAttributes = []

@@ -1,4 +1,4 @@
-from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getDecisionAttributes, getParsedPairs
+from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -25,21 +25,3 @@ for x in range(INPUT_DATA_LENGTH):
 
 for item in B:
     print(item)
-
-G = B
-T = []
-PAIRED_RECORDS_AND_RULES = []
-
-print('---------')
-
-for attr, value in parsedRecordsAndPairs.items():
-    print(attr, value)
-    for x in value:
-        for y in G:
-            if x == y:
-                PAIRED_RECORDS_AND_RULES.append(x)
-    print(PAIRED_RECORDS_AND_RULES)
-    PAIRED_RECORDS_AND_RULES = []
-    print('-----------')
-    # for item in G:
-    #     print(attr, value)

@@ -22,8 +22,9 @@ def getParsedPairs():
     possibleAttributes = getAllPossibleAttributes()
     parsedAttributes = []
     for attr, value in possibleAttributes.items():
-        for item in list(value):
-            parsedAttributes.append({attr: possibleAttributes[attr][item]})
+        if attr != getKeyAttribute():
+            for item in list(value):
+                parsedAttributes.append({attr: possibleAttributes[attr][item]})
     return parsedAttributes
 
 

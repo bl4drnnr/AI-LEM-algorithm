@@ -14,9 +14,9 @@ for x in range(INPUT_DATA_LENGTH):
         if DATA[x][list(pair)[0]] == pair[list(pair)[0]]:
             parsedName = str(list(pair)[0]) + '_' + str(pair[list(pair)[0]])
             if parsedRecordsAndPairs.get(parsedName) is None:
-                parsedRecordsAndPairs[parsedName] = [{x: DATA[x]}]
+                parsedRecordsAndPairs[parsedName] = [{x + 1: DATA[x]}]
             else:
-                parsedRecordsAndPairs[parsedName].append({x: DATA[x]})
+                parsedRecordsAndPairs[parsedName].append({x + 1: DATA[x]})
 
 for attr, value in parsedRecordsAndPairs.items():
     print(attr)

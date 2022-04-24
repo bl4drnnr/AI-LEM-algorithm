@@ -43,5 +43,7 @@ for attr, value in Bs.items():
     mostRelatedPairs = getPL(PL)
     extractedIndexesG = extractIndexes(G[attr])
     extractedIndexesMostRelatedPairs = extractIndexes(mostRelatedPairs['records'])
+    if set(extractedIndexesMostRelatedPairs).issubset(set(extractedIndexesG)):
+        print('Yeaaaa')
     print("extractedIndexesG: " + str(extractedIndexesG))
     print("extractedIndexesMostRelatedPairs: " + str(extractedIndexesMostRelatedPairs))

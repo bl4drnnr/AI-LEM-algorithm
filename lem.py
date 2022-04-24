@@ -10,16 +10,16 @@ PARSED_PAIRS = getParsedPairs()
 
 Bs = {}
 
-parsedRecordsAndPairs = {}
+TG = {}
 
 for x in range(INPUT_DATA_LENGTH):
     for pair in PARSED_PAIRS:
         if DATA[x][list(pair)[0]] == pair[list(pair)[0]]:
             parsedName = str(list(pair)[0]) + '_' + str(pair[list(pair)[0]])
-            if parsedRecordsAndPairs.get(parsedName) is None:
-                parsedRecordsAndPairs[parsedName] = [{x + 1: DATA[x]}]
+            if TG.get(parsedName) is None:
+                TG[parsedName] = [{x + 1: DATA[x]}]
             else:
-                parsedRecordsAndPairs[parsedName].append({x + 1: DATA[x]})
+                TG[parsedName].append({x + 1: DATA[x]})
 
 for x in range(INPUT_DATA_LENGTH):
     for attr, value in ALL_CLASSES.items():

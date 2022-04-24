@@ -53,7 +53,6 @@ for attr, value in Bs.items():
         if item['pl'][0] == P and item['pl'][1] == L:
             mostRelatedPairs.append(item)
 
-    print(mostRelatedPairs[0]['records'])
     iterator = 0
     for item in mostRelatedPairs[0]['records']:
         for i in G[attr]:
@@ -61,5 +60,13 @@ for attr, value in Bs.items():
                 if a == list(item)[0]:
                     iterator += 1
     if iterator == len(mostRelatedPairs[0]['records']):
-        print(mostRelatedPairs[0]['records'])
+        ruleGenerated = True
+        for k, v in TG.items():
+            for item in v:
+                for it in mostRelatedPairs[0]['records']:
+                    if it != item:
+                        ruleGenerated = False
+        if ruleGenerated:
+            print(mostRelatedPairs[0]['records'])
+
     print()

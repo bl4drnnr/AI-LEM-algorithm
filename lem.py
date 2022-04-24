@@ -52,5 +52,14 @@ for attr, value in Bs.items():
     for item in PL:
         if item['pl'][0] == P and item['pl'][1] == L:
             mostRelatedPairs.append(item)
-    print(mostRelatedPairs)
+
+    print(mostRelatedPairs[0]['records'])
+    iterator = 0
+    for item in mostRelatedPairs[0]['records']:
+        for i in G[attr]:
+            for a, v in i.items():
+                if a == list(item)[0]:
+                    iterator += 1
+    if iterator == len(mostRelatedPairs[0]['records']):
+        print(mostRelatedPairs[0]['records'])
     print()

@@ -41,14 +41,16 @@ for attr, value in Bs.items():
     for k, v in TG.items():
         oneKeyPair = v
         res = lookForRuleAndRecordMatches(oneKeyPair, oneRule)
-        PL.append(res)
+        PL.append({'pl': res, 'records': oneKeyPair})
         P.append(res[0])
+
     P = max(P)
     for item in PL:
-        if item[0] == P:
-            L.append(item[1])
+        if item['pl'][0] == P:
+            L.append(item['pl'][1])
     L = min(L)
     for item in PL:
-        if item[0] == P and item[1] == L:
+        if item['pl'][0] == P and item['pl'][1] == L:
             mostRelatedPairs.append(item)
+    print(mostRelatedPairs)
     print()

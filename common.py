@@ -1,2 +1,10 @@
 def lookForRuleAndRecordMatches(record, rule):
-    print(record, rule)
+    t = []
+    r = []
+    for x in record:
+        for y in rule:
+            if list(x)[0] == list(y)[0]:
+                t.append(list(x)[0])
+                r = x[list(x)[0]]
+
+    return [len(t), len(r)]

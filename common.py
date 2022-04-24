@@ -1,3 +1,7 @@
+from parser import getKeyAttribute
+KEY_ATTRIBUTE = getKeyAttribute()
+
+
 def lookForRuleAndRecordMatches(record, rule):
     t = []
     for x in record:
@@ -48,4 +52,5 @@ def extractIndexes(arr):
 
 
 def generateRule(result, records):
+    rule = "IF "
     print(result, records)

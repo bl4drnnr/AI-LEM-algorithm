@@ -1,4 +1,4 @@
-from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs
+from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs, parseName
 from common import lookForRuleAndRecordMatches, getPL, extractIndexes, generateRule
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
@@ -16,7 +16,7 @@ TG = {}
 for x in range(INPUT_DATA_LENGTH):
     for pair in PARSED_PAIRS:
         if DATA[x][list(pair)[0]] == pair[list(pair)[0]]:
-            parsedName = str(list(pair)[0]) + '_' + str(pair[list(pair)[0]])
+            parsedName = parseName(pair)
             if TG.get(parsedName) is None:
                 TG[parsedName] = [{x + 1: DATA[x]}]
             else:

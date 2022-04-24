@@ -1,4 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs
+from common import lookForRuleAndRecordMatches
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -36,6 +37,7 @@ for attr, value in TG.items():
     oneKeyValuePairs = value
     for k, v in Bs.items():
         oneClassRecords = v
+        lookForRuleAndRecordMatches(oneKeyValuePairs, oneClassRecords)
 
 for attr, value in Bs.items():
     print(attr, value)

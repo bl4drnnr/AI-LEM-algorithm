@@ -3,9 +3,12 @@ DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
 ALL_CLASSES = ALL_POSSIBLE_ATTRIBUTES[KEY_ATTRIBUTE]
+
 INPUT_DATA_LENGTH = len(DATA)
 GENERATED_RULES = []
 PARSED_PAIRS = getParsedPairs()
+
+Bs = {}
 
 parsedRecordsAndPairs = {}
 
@@ -18,8 +21,13 @@ for x in range(INPUT_DATA_LENGTH):
             else:
                 parsedRecordsAndPairs[parsedName].append({x + 1: DATA[x]})
 
-for attr, value in parsedRecordsAndPairs.items():
-    print(attr)
-    for x in value:
-        print(x)
-    print('-------')
+for x in range(INPUT_DATA_LENGTH):
+    for attr, value in ALL_CLASSES.items():
+        if DATA[x][KEY_ATTRIBUTE] == value:
+            if Bs.get(attr) is None:
+                Bs[attr] = [{x + 1: DATA[x]}]
+            else:
+                Bs[attr].append({x + 1: DATA[x]})
+
+for attr, value in Bs.items():
+    print(attr, value)

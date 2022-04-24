@@ -33,7 +33,6 @@ for x in range(INPUT_DATA_LENGTH):
 
 for attr, value in Bs.items():
     oneRule = value
-    mostRelatedPairs = []
     G = Bs
     P = []
     L = []
@@ -45,5 +44,3 @@ for attr, value in Bs.items():
         P.append(res[0])
 
     mostRelatedPairs = getPL(P, L, PL)
-
-    print()

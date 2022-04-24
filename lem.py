@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs
-from common import lookForRuleAndRecordMatches, getPL
+from common import lookForRuleAndRecordMatches, getPL, extractIndexes
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -41,4 +41,7 @@ for attr, value in Bs.items():
         PL.append({'pl': res, 'records': oneKeyPair})
 
     mostRelatedPairs = getPL(PL)
-    print(mostRelatedPairs)
+    extractedIndexesG = extractIndexes(G[attr])
+    extractedIndexesMostRelatedPairs = extractIndexes(mostRelatedPairs['records'])
+    print("extractedIndexesG: " + str(extractedIndexesG))
+    print("extractedIndexesMostRelatedPairs: " + str(extractedIndexesMostRelatedPairs))

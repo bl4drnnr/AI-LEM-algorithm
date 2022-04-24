@@ -37,3 +37,11 @@ def getPL(PL):
         if item['pl'] == mostRelatedPair:
             mostRelatedPair = item
     return mostRelatedPair
+
+
+def extractIndexes(arr):
+    indexes = []
+    for item in arr:
+        for attr, value in item.items():
+            indexes.append(attr)
+    return indexes

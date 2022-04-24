@@ -46,5 +46,3 @@ for attr, value in Bs.items():
 
     if set(extractedIndexesMostRelatedPairs).issubset(set(extractedIndexesG)):
         GENERATED_RULES.append(generateRule(attr, mostRelatedPairs))
-
-print("GENERATED_RULES: " + str(GENERATED_RULES))

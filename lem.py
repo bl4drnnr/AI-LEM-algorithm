@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs
-from common import lookForRuleAndRecordMatches, getPL, extractIndexes
+from common import lookForRuleAndRecordMatches, getPL, extractIndexes, generateRule
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -38,12 +38,14 @@ for attr, value in Bs.items():
     for k, v in TG.items():
         oneKeyPair = v
         res = lookForRuleAndRecordMatches(oneKeyPair, oneRule)
-        PL.append({'pl': res, 'records': oneKeyPair})
+        PL.append({'pl': res, 'records': oneKeyPair, 'type': k})
 
     mostRelatedPairs = getPL(PL)
     extractedIndexesG = extractIndexes(G[attr])
     extractedIndexesMostRelatedPairs = extractIndexes(mostRelatedPairs['records'])
+
     if set(extractedIndexesMostRelatedPairs).issubset(set(extractedIndexesG)):
-        print('Yeaaaa')
+        GENERATED_RULES.append(generateRule(attr, mostRelatedPairs))
+
     print("extractedIndexesG: " + str(extractedIndexesG))
     print("extractedIndexesMostRelatedPairs: " + str(extractedIndexesMostRelatedPairs))

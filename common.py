@@ -45,3 +45,7 @@ def extractIndexes(arr):
         for attr, value in item.items():
             indexes.append(attr)
     return indexes
+
+
+def generateRule(result, records):
+    print(result, records)

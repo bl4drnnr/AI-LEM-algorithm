@@ -1,4 +1,5 @@
-from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs
+from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs, parseName
+from common import lookForRuleAndRecordMatches, getPL, extractIndexes, generateRule
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -15,14 +16,12 @@ TG = {}
 for x in range(INPUT_DATA_LENGTH):
     for pair in PARSED_PAIRS:
         if DATA[x][list(pair)[0]] == pair[list(pair)[0]]:
-            parsedName = str(list(pair)[0]) + '_' + str(pair[list(pair)[0]])
+            parsedName = parseName(pair)
             if TG.get(parsedName) is None:
                 TG[parsedName] = [{x + 1: DATA[x]}]
             else:
                 TG[parsedName].append({x + 1: DATA[x]})
 
-for x, y in TG.items():
-    print(x, y)
 
 for x in range(INPUT_DATA_LENGTH):
     for attr, value in ALL_CLASSES.items():
@@ -32,10 +31,18 @@ for x in range(INPUT_DATA_LENGTH):
             else:
                 Bs[attr].append({x + 1: DATA[x]})
 
-for attr, value in TG.items():
-    oneKeyValuePairs = value
-    for k, v in Bs.items():
-        oneClassRecords = v
-
 for attr, value in Bs.items():
-    print(attr, value)
+    oneRule = value
+    G = Bs
+    PL = []
+    for k, v in TG.items():
+        oneKeyPair = v
+        res = lookForRuleAndRecordMatches(oneKeyPair, oneRule)
+        PL.append({'pl': res, 'records': oneKeyPair, 'type': k})
+
+    mostRelatedPairs = getPL(PL)
+    extractedIndexesG = extractIndexes(G[attr])
+    extractedIndexesMostRelatedPairs = extractIndexes(mostRelatedPairs['records'])
+
+    if set(extractedIndexesMostRelatedPairs).issubset(set(extractedIndexesG)):
+        GENERATED_RULES.append(generateRule(attr, mostRelatedPairs))

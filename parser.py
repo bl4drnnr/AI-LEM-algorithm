@@ -24,6 +24,22 @@ def getParsedPairs():
     return parsedAttributes
 
 
+def parseName(name):
+    return str(list(name)[0]) + '_' + str(name[list(name)[0]])
+
+
+def deparseName(name):
+    possibleAttributes = getAllPossibleAttributes()
+    deparsedName = []
+    for attr, value in possibleAttributes.items():
+        if attr == name.split('_')[0]:
+            deparsedName.append(attr)
+            for a, v in value.items():
+                if v == int(name.split('_')[1]):
+                    deparsedName.append(a)
+    return deparsedName
+
+
 def parseInputData():
     # Get all possible attributes and classes
     for record in DATA:

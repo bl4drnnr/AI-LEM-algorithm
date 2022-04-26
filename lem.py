@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs, parseName
-from common import lookForRuleAndRecordMatches, getPL, extractIndexes, generateRule
+from common import getPL, extractIndexes, generateRule
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -35,8 +35,9 @@ for attr, value in Bs.items():
     ruleResult = attr
     currentBs = value
     extractedIndexes = extractIndexes(currentBs)
+    extractedIndexesB = extractedIndexes
 
-    print("extractedIndexes: " + str(extractedIndexes))
+    print("extractedIndexes: " + str(extractedIndexesB))
 
     recordsPl = []
     # Extracting P and L
@@ -45,7 +46,7 @@ for attr, value in Bs.items():
         L = len(records)
         for item in records:
             for index, record in item.items():
-                if index in extractedIndexes:
+                if index in extractedIndexesB:
                     P += 1
         recordsPl.append({
             'recType': recordType,
@@ -59,69 +60,26 @@ for attr, value in Bs.items():
     pairInB = True
 
     for idx in maxPandMinLIndexes:
-        if idx not in extractedIndexes:
+        if idx not in extractedIndexesB:
             pairInB = False
 
     # If pair in B - generate rule
     if pairInB:
+        # Write down rule, rewrite G (extractedIndexesB), and iterate one more time
+        print("Rule " + str(generateRule(maxPandMinLRecord, 'srednie')) + " has been generated!")
         GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
 
+        updatedExtractedIndexesB = []
+        for x in extractedIndexesB:
+            if x not in maxPandMinLIndexes:
+                updatedExtractedIndexesB.append(x)
+        extractedIndexesB = updatedExtractedIndexesB
+    else:
+        # Find record to unite
+        print("maxPandMinLRecord: " + str(maxPandMinLRecord))
+        print("maxPandMinLIndexes: " + str(maxPandMinLIndexes))
+
+    print('extractedIndexesB: ' + str(extractedIndexesB))
+    print('------------')
+
 print(GENERATED_RULES)
-
-# ----------------------------------------------------
-# tempBs = Bs['srednie']
-# GBSextractedIndexes = extractIndexes(tempBs)
-# print("GBSextractedIndexes: " + str(GBSextractedIndexes))
-
-# recordsPl = []
-
-# Extracting P and L
-# for recordType, records in TG.items():
-#     P = 0
-#     L = len(records)
-#     for item in records:
-#         for index, record in item.items():
-#             if index in GBSextractedIndexes:
-#                 P += 1
-#     recordsPl.append({
-#         'recType': recordType,
-#         'records': records,
-#         'PL': [P, L]
-#     })
-
-# maxPandMinLRecord = getPL(recordsPl)
-# maxPandMinLIndexes = extractIndexes(maxPandMinLRecord['records'])
-
-# pairInB = True
-#
-# for idx in maxPandMinLIndexes:
-#     if idx not in GBSextractedIndexes:
-#         pairInB = False
-#
-# # If pair in B - generate rule
-# if pairInB:
-#     GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
-# ----------------------------------------------------
-# for attr, value in Bs.items():
-#     oneRule = value
-#     G = Bs
-#     PL = []
-#     for k, v in TG.items():
-#         oneKeyPair = v
-#         res = lookForRuleAndRecordMatches(oneKeyPair, oneRule)
-#         PL.append({'pl': res, 'records': oneKeyPair, 'type': k})
-#
-#     mostRelatedPairs = getPL(PL)
-#     extractedIndexesG = extractIndexes(G[attr])
-#     extractedIndexesMostRelatedPairs = extractIndexes(mostRelatedPairs['records'])
-#
-#     if set(extractedIndexesMostRelatedPairs).issubset(set(extractedIndexesG)):
-#         GENERATED_RULES.append(generateRule(attr, mostRelatedPairs))
-#     else:
-#         print("mostRelatedPairs: " + str(mostRelatedPairs))
-#         print("extractedIndexesG: " + str(extractedIndexesG))
-#         print("extractedIndexesMostRelatedPairs: " + str(extractedIndexesMostRelatedPairs))
-#         print("---------")
-#
-# for rule in GENERATED_RULES:
-#     print(rule)

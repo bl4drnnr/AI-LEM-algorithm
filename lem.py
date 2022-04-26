@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs, parseName
-from common import getPL, extractIndexes, generateRule
+from common import getPL, extractIndexes, generateRule, extractPL
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -39,20 +39,8 @@ for attr, value in Bs.items():
 
     print("extractedIndexes: " + str(extractedIndexesB))
 
-    recordsPl = []
     # Extracting P and L
-    for recordType, records in TG.items():
-        P = 0
-        L = len(records)
-        for item in records:
-            for index, record in item.items():
-                if index in extractedIndexesB:
-                    P += 1
-        recordsPl.append({
-            'recType': recordType,
-            'records': records,
-            'PL': [P, L]
-        })
+    recordsPl = extractPL(TG, extractedIndexesB)
 
     maxPandMinLRecord = getPL(recordsPl)
     maxPandMinLIndexes = extractIndexes(maxPandMinLRecord['records'])

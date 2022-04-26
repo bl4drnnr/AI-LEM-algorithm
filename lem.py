@@ -68,6 +68,12 @@ for attr, value in Bs.items():
         # Write down rule, rewrite G (extractedIndexesB), and iterate one more time
         print("Rule " + str(generateRule(maxPandMinLRecord, 'srednie')) + " has been generated!")
         GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
+
+        updatedExtractedIndexesB = []
+        for x in extractedIndexesB:
+            if x not in maxPandMinLIndexes:
+                updatedExtractedIndexesB.append(x)
+        extractedIndexesB = updatedExtractedIndexesB
     else:
         # Find record to unite
         print("maxPandMinLRecord: " + str(maxPandMinLRecord))

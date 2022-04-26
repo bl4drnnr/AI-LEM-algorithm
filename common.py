@@ -72,3 +72,8 @@ def generateRule(record, result):
     rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
     rule += " THEN " + str(KEY_ATTRIBUTE) + " = " + str(result)
     return rule
+
+
+def printRules(rules):
+    for rule in rules:
+        print(rule)

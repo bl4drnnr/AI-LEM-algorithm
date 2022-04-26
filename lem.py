@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs, parseName
-from common import getPL, extractIndexes, generateRule, extractPL
+from common import getPL, extractIndexes, generateRule, extractPL, printRules
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -70,4 +70,5 @@ for attr, value in Bs.items():
     print('extractedIndexesB: ' + str(extractedIndexesB))
     print('------------')
 
-print(GENERATED_RULES)
+
+printRules(GENERATED_RULES)

@@ -64,7 +64,14 @@ for attr, value in Bs.items():
 
     # If pair in B - generate rule
     if pairInB:
+        print("Rule " + str(generateRule(maxPandMinLRecord, 'srednie')) + " has been generated!")
         GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
+    else:
+        # Find record to unite
+        print("maxPandMinLRecord: " + str(maxPandMinLRecord))
+        print("maxPandMinLIndexes: " + str(maxPandMinLIndexes))
+
+    print('------------')
 
 print(GENERATED_RULES)
 

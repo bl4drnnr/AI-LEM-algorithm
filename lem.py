@@ -52,7 +52,40 @@ for recordType, records in TG.items():
         'PL': [P, L]
     })
 
-print(recordsPl)
+Ps = []
+Ls = []
+
+# Look for max P and min L
+for item in recordsPl:
+    Ps.append(item['PL'][0])
+    Ls.append(item['PL'][1])
+
+PsAndLs = []
+
+for x in range(len(Ps)):
+    PsAndLs.append([Ps[x], Ls[x]])
+
+maxP = max(Ps)
+tempPsAndLs = []
+tempLs = []
+
+for item in PsAndLs:
+    if item[0] == maxP:
+        tempPsAndLs.append(item)
+
+for item in tempPsAndLs:
+    tempLs.append(item[1])
+
+minL = min(tempLs)
+maxPandMinL = None
+
+for item in PsAndLs:
+    if item[0] == maxP and item[1] == minL:
+        maxPandMinL = item
+
+for record in recordsPl:
+    if record['PL'] == maxPandMinL:
+        print(record)
 
 # for attr, value in Bs.items():
 #     oneRule = value

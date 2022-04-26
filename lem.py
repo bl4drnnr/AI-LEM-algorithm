@@ -35,8 +35,9 @@ for attr, value in Bs.items():
     ruleResult = attr
     currentBs = value
     extractedIndexes = extractIndexes(currentBs)
+    extractedIndexesB = extractedIndexes
 
-    print("extractedIndexes: " + str(extractedIndexes))
+    print("extractedIndexes: " + str(extractedIndexesB))
 
     recordsPl = []
     # Extracting P and L
@@ -45,7 +46,7 @@ for attr, value in Bs.items():
         L = len(records)
         for item in records:
             for index, record in item.items():
-                if index in extractedIndexes:
+                if index in extractedIndexesB:
                     P += 1
         recordsPl.append({
             'recType': recordType,
@@ -59,11 +60,12 @@ for attr, value in Bs.items():
     pairInB = True
 
     for idx in maxPandMinLIndexes:
-        if idx not in extractedIndexes:
+        if idx not in extractedIndexesB:
             pairInB = False
 
     # If pair in B - generate rule
     if pairInB:
+        # Write down rule, rewrite G (extractedIndexesB), and iterate one more time
         print("Rule " + str(generateRule(maxPandMinLRecord, 'srednie')) + " has been generated!")
         GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
     else:
@@ -71,6 +73,7 @@ for attr, value in Bs.items():
         print("maxPandMinLRecord: " + str(maxPandMinLRecord))
         print("maxPandMinLIndexes: " + str(maxPandMinLIndexes))
 
+    print('extractedIndexesB: ' + str(extractedIndexesB))
     print('------------')
 
 print(GENERATED_RULES)

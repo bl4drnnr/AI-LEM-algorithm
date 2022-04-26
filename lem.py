@@ -35,41 +35,73 @@ for attr, value in Bs.items():
     ruleResult = attr
     currentBs = value
     extractedIndexes = extractIndexes(currentBs)
+
     print("extractedIndexes: " + str(extractedIndexes))
 
-tempBs = Bs['srednie']
-GBSextractedIndexes = extractIndexes(tempBs)
-print("GBSextractedIndexes: " + str(GBSextractedIndexes))
+    recordsPl = []
+    # Extracting P and L
+    for recordType, records in TG.items():
+        P = 0
+        L = len(records)
+        for item in records:
+            for index, record in item.items():
+                if index in extractedIndexes:
+                    P += 1
+        recordsPl.append({
+            'recType': recordType,
+            'records': records,
+            'PL': [P, L]
+        })
 
-recordsPl = []
+    maxPandMinLRecord = getPL(recordsPl)
+    maxPandMinLIndexes = extractIndexes(maxPandMinLRecord['records'])
+
+    pairInB = True
+
+    for idx in maxPandMinLIndexes:
+        if idx not in extractedIndexes:
+            pairInB = False
+
+    # If pair in B - generate rule
+    if pairInB:
+        GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
+
+print(GENERATED_RULES)
+
+# ----------------------------------------------------
+# tempBs = Bs['srednie']
+# GBSextractedIndexes = extractIndexes(tempBs)
+# print("GBSextractedIndexes: " + str(GBSextractedIndexes))
+
+# recordsPl = []
 
 # Extracting P and L
-for recordType, records in TG.items():
-    P = 0
-    L = len(records)
-    for item in records:
-        for index, record in item.items():
-            if index in GBSextractedIndexes:
-                P += 1
-    recordsPl.append({
-        'recType': recordType,
-        'records': records,
-        'PL': [P, L]
-    })
+# for recordType, records in TG.items():
+#     P = 0
+#     L = len(records)
+#     for item in records:
+#         for index, record in item.items():
+#             if index in GBSextractedIndexes:
+#                 P += 1
+#     recordsPl.append({
+#         'recType': recordType,
+#         'records': records,
+#         'PL': [P, L]
+#     })
 
-maxPandMinLRecord = getPL(recordsPl)
-maxPandMinLIndexes = extractIndexes(maxPandMinLRecord['records'])
+# maxPandMinLRecord = getPL(recordsPl)
+# maxPandMinLIndexes = extractIndexes(maxPandMinLRecord['records'])
 
-pairInB = True
-
-for idx in maxPandMinLIndexes:
-    if idx not in GBSextractedIndexes:
-        pairInB = False
-
-# If pair in B - generate rule
-if pairInB:
-    GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
-
+# pairInB = True
+#
+# for idx in maxPandMinLIndexes:
+#     if idx not in GBSextractedIndexes:
+#         pairInB = False
+#
+# # If pair in B - generate rule
+# if pairInB:
+#     GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
+# ----------------------------------------------------
 # for attr, value in Bs.items():
 #     oneRule = value
 #     G = Bs

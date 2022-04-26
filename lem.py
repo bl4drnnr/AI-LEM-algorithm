@@ -63,8 +63,12 @@ def lem(extractedIdx, tg, currentRule):
         extractedIndexesB = updatedExtractedIndexesB
 
         # Update TG below
+        updatedTG = {}
+        for t in tg:
+            if t != maxPandMinLRecord['recType']:
+                updatedTG[t] = tg[t]
 
-        updatedTG = extractPL(tg, extractedIndexesB)
+        updatedTG = extractPL(updatedTG, extractedIndexesB)
 
         for t in updatedTG:
             print(t['PL'])

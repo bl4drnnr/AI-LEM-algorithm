@@ -38,6 +38,7 @@ print("GBSextractedIndexes: " + str(GBSextractedIndexes))
 
 recordsPl = []
 
+# Extracting P and L
 for recordType, records in TG.items():
     P = 0
     L = len(records)

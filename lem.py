@@ -51,7 +51,7 @@ def lem(extractedIdx, tg):
 
     # If pair in B - generate rule
     if pairInB:
-        # Write down rule, rewrite G (extractedIndexesB), and iterate one more time
+        # Write down rule, rewrite G (extractedIndexesB), rewrite TG and iterate one more time
         print("Rule " + str(generateRule(maxPandMinLRecord, 'srednie')) + " has been generated!")
         GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
 

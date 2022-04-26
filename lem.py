@@ -56,9 +56,9 @@ def lem(extractedIdx, tg):
         GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
 
         updatedExtractedIndexesB = []
-        for x in extractedIndexesB:
-            if x not in maxPandMinLIndexes:
-                updatedExtractedIndexesB.append(x)
+        for ruleIndex in extractedIndexesB:
+            if ruleIndex not in maxPandMinLIndexes:
+                updatedExtractedIndexesB.append(ruleIndex)
         extractedIndexesB = updatedExtractedIndexesB
 
         # lem(extractedIndexesB, tg)

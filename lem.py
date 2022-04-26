@@ -46,3 +46,11 @@ for attr, value in Bs.items():
 
     if set(extractedIndexesMostRelatedPairs).issubset(set(extractedIndexesG)):
         GENERATED_RULES.append(generateRule(attr, mostRelatedPairs))
+    else:
+        print("mostRelatedPairs: " + str(mostRelatedPairs))
+        print("extractedIndexesG: " + str(extractedIndexesG))
+        print("extractedIndexesMostRelatedPairs: " + str(extractedIndexesMostRelatedPairs))
+        print("---------")
+
+for rule in GENERATED_RULES:
+    print(rule)

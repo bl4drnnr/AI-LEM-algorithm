@@ -32,7 +32,7 @@ for x in range(INPUT_DATA_LENGTH):
                 Bs[attr].append({x + 1: DATA[x]})
 
 
-def lem(extractedIdx, tg):
+def lem(extractedIdx, tg, currentRule):
     extractedIndexesB = extractedIdx
 
     print("extractedIndexes: " + str(extractedIndexesB))
@@ -52,15 +52,17 @@ def lem(extractedIdx, tg):
     # If pair in B - generate rule
     if pairInB:
         # Write down rule, rewrite G (extractedIndexesB), rewrite TG and iterate one more time
-        print("Rule " + str(generateRule(maxPandMinLRecord, 'srednie')) + " has been generated!")
-        GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
+        print("Rule " + str(generateRule(maxPandMinLRecord, currentRule)) + " has been generated!")
+        GENERATED_RULES.append(generateRule(maxPandMinLRecord, currentRule))
 
         updatedExtractedIndexesB = []
         for ruleIndex in extractedIndexesB:
             if ruleIndex not in maxPandMinLIndexes:
                 updatedExtractedIndexesB.append(ruleIndex)
         extractedIndexesB = updatedExtractedIndexesB
-
+        test = extractPL(tg, extractedIndexesB)
+        for t in test:
+            print(t)
         # lem(extractedIndexesB, tg)
     else:
         # Find record to unite
@@ -74,7 +76,7 @@ def lem(extractedIdx, tg):
 for attr, value in Bs.items():
     ruleResult = attr
     currentBs = value
-    lem(extractIndexes(currentBs), TG)
+    lem(extractIndexes(currentBs), TG, ruleResult)
 
 
 printRules(GENERATED_RULES)

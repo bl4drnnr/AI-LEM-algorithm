@@ -31,6 +31,12 @@ for x in range(INPUT_DATA_LENGTH):
             else:
                 Bs[attr].append({x + 1: DATA[x]})
 
+for attr, value in Bs.items():
+    ruleResult = attr
+    currentBs = value
+    extractedIndexes = extractIndexes(currentBs)
+    print("extractedIndexes: " + str(extractedIndexes))
+
 tempBs = Bs['srednie']
 GBSextractedIndexes = extractIndexes(tempBs)
 print("GBSextractedIndexes: " + str(GBSextractedIndexes))

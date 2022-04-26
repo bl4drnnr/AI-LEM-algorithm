@@ -32,7 +32,6 @@ for x in range(INPUT_DATA_LENGTH):
                 Bs[attr].append({x + 1: DATA[x]})
 
 tempBs = Bs['srednie']
-GBS = tempBs
 GBSextractedIndexes = extractIndexes(tempBs)
 print("GBSextractedIndexes: " + str(GBSextractedIndexes))
 
@@ -64,8 +63,6 @@ for idx in maxPandMinLIndexes:
 # If pair in B - generate rule
 if pairInB:
     GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
-
-print(GENERATED_RULES)
 
 # for attr, value in Bs.items():
 #     oneRule = value

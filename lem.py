@@ -70,8 +70,6 @@ def lem(extractedIdx, tg, currentRule):
 
         updatedTG = extractPL(updatedTG, extractedIndexesB)
 
-        for t in updatedTG:
-            print(t['PL'])
         # lem(extractedIndexesB, tg)
     else:
         # Find record to unite

@@ -51,7 +51,6 @@ def lem(extractedIdx, tg, currentRule):
 
     # If pair in B - generate rule
     if pairInB:
-        print("maxPandMinLRecord: " + str(maxPandMinLRecord))
         # Write down rule, rewrite G (extractedIndexesB), rewrite TG and iterate one more time
         print("Rule " + str(generateRule(maxPandMinLRecord, currentRule)) + " has been generated!")
         GENERATED_RULES.append(generateRule(maxPandMinLRecord, currentRule))

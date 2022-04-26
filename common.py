@@ -12,11 +12,11 @@ def lookForRuleAndRecordMatches(record, rule):
     return [len(t), len(record)]
 
 
+# Look for max P and min L
 def getPL(records):
     Ps = []
     Ls = []
 
-    # Look for max P and min L
     for item in records:
         Ps.append(item['PL'][0])
         Ls.append(item['PL'][1])
@@ -90,9 +90,17 @@ def extractIndexes(arr):
     return indexes
 
 
-def generateRule(result, records):
+def generateRule(record, result):
     rule = "IF "
-    deparsedName = deparseName(records['type'])
+    deparsedName = deparseName(record['recType'])
     rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
     rule += " THEN " + str(KEY_ATTRIBUTE) + " = " + str(result)
     return rule
+
+
+# def generateRule(result, records):
+#     rule = "IF "
+#     deparsedName = deparseName(records['type'])
+#     rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
+#     rule += " THEN " + str(KEY_ATTRIBUTE) + " = " + str(result)
+#     return rule

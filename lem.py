@@ -63,8 +63,9 @@ for idx in maxPandMinLIndexes:
 
 # If pair in B - generate rule
 if pairInB:
-    print('its ok, generating rule')
-    print()
+    GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
+
+print(GENERATED_RULES)
 
 # for attr, value in Bs.items():
 #     oneRule = value

@@ -53,8 +53,17 @@ for recordType, records in TG.items():
     })
 
 maxPandMinL = getPL(recordsPl)
+maxPandMinL = extractIndexes(maxPandMinL['records'])
 
-print("maxPandMinL: " + str(maxPandMinL))
+pairInB = True
+
+for idx in maxPandMinL:
+    if idx not in GBSextractedIndexes:
+        pairInB = False
+
+# If pair in B - generate rule
+if pairInB:
+    print('its ok')
 
 # for attr, value in Bs.items():
 #     oneRule = value

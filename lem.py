@@ -36,16 +36,20 @@ GBS = tempBs
 GBSextractedIndexes = extractIndexes(tempBs)
 print("GBSextractedIndexes: " + str(GBSextractedIndexes))
 
+P = []
+L = []
+
 for recordType, records in TG.items():
-    P = 0
-    L = len(records)
+    counterP = 0
+    L.append(len(records))
     for item in records:
         for index, record in item.items():
             if index in GBSextractedIndexes:
-                P += 1
-    print(recordType, records)
-    print("P: " + str(P) + " " + "L: " + str(L))
-    print("-------------")
+                counterP += 1
+    P.append(counterP)
+
+print(P)
+print(L)
 
 # for attr, value in Bs.items():
 #     oneRule = value

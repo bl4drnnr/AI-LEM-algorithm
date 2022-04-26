@@ -31,11 +31,9 @@ for x in range(INPUT_DATA_LENGTH):
             else:
                 Bs[attr].append({x + 1: DATA[x]})
 
-for attr, value in Bs.items():
-    ruleResult = attr
-    currentBs = value
-    extractedIndexes = extractIndexes(currentBs)
-    extractedIndexesB = extractedIndexes
+
+def lem(extractedIdx):
+    extractedIndexesB = extractedIdx
 
     print("extractedIndexes: " + str(extractedIndexesB))
 
@@ -69,6 +67,12 @@ for attr, value in Bs.items():
 
     print('extractedIndexesB: ' + str(extractedIndexesB))
     print('------------')
+
+
+for attr, value in Bs.items():
+    ruleResult = attr
+    currentBs = value
+    lem(extractIndexes(currentBs))
 
 
 printRules(GENERATED_RULES)

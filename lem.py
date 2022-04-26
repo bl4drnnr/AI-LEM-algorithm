@@ -30,3 +30,43 @@ for x in range(INPUT_DATA_LENGTH):
                 Bs[attr] = [{x + 1: DATA[x]}]
             else:
                 Bs[attr].append({x + 1: DATA[x]})
+
+tempBs = Bs['srednie']
+GBS = tempBs
+GBSextractedIndexes = extractIndexes(tempBs)
+print("GBSextractedIndexes: " + str(GBSextractedIndexes))
+
+for recordType, records in TG.items():
+    P = 0
+    L = len(records)
+    for item in records:
+        for index, record in item.items():
+            if index in GBSextractedIndexes:
+                P += 1
+    print(recordType, records)
+    print("P: " + str(P) + " " + "L: " + str(L))
+    print("-------------")
+
+# for attr, value in Bs.items():
+#     oneRule = value
+#     G = Bs
+#     PL = []
+#     for k, v in TG.items():
+#         oneKeyPair = v
+#         res = lookForRuleAndRecordMatches(oneKeyPair, oneRule)
+#         PL.append({'pl': res, 'records': oneKeyPair, 'type': k})
+#
+#     mostRelatedPairs = getPL(PL)
+#     extractedIndexesG = extractIndexes(G[attr])
+#     extractedIndexesMostRelatedPairs = extractIndexes(mostRelatedPairs['records'])
+#
+#     if set(extractedIndexesMostRelatedPairs).issubset(set(extractedIndexesG)):
+#         GENERATED_RULES.append(generateRule(attr, mostRelatedPairs))
+#     else:
+#         print("mostRelatedPairs: " + str(mostRelatedPairs))
+#         print("extractedIndexesG: " + str(extractedIndexesG))
+#         print("extractedIndexesMostRelatedPairs: " + str(extractedIndexesMostRelatedPairs))
+#         print("---------")
+#
+# for rule in GENERATED_RULES:
+#     print(rule)

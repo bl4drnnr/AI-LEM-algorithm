@@ -40,6 +40,24 @@ def getPL(records):
 
     return maxPandMinL
 
+
+def extractPL(TG, extractedIndexesB):
+    recordsPl = []
+    for recordType, records in TG.items():
+        P = 0
+        L = len(records)
+        for item in records:
+            for index, record in item.items():
+                if index in extractedIndexesB:
+                    P += 1
+        recordsPl.append({
+            'recType': recordType,
+            'records': records,
+            'PL': [P, L]
+        })
+    return recordsPl
+
+
 def extractIndexes(arr):
     indexes = []
     for item in arr:
@@ -54,3 +72,8 @@ def generateRule(record, result):
     rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
     rule += " THEN " + str(KEY_ATTRIBUTE) + " = " + str(result)
     return rule
+
+
+def printRules(rules):
+    for rule in rules:
+        print(rule)

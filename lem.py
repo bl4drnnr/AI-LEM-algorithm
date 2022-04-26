@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs, parseName
-from common import getPL, extractIndexes, generateRule
+from common import getPL, extractIndexes, generateRule, extractPL, printRules
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -31,28 +31,14 @@ for x in range(INPUT_DATA_LENGTH):
             else:
                 Bs[attr].append({x + 1: DATA[x]})
 
-for attr, value in Bs.items():
-    ruleResult = attr
-    currentBs = value
-    extractedIndexes = extractIndexes(currentBs)
-    extractedIndexesB = extractedIndexes
+
+def lem(extractedIdx, tg, currentRule):
+    extractedIndexesB = extractedIdx
 
     print("extractedIndexes: " + str(extractedIndexesB))
 
-    recordsPl = []
     # Extracting P and L
-    for recordType, records in TG.items():
-        P = 0
-        L = len(records)
-        for item in records:
-            for index, record in item.items():
-                if index in extractedIndexesB:
-                    P += 1
-        recordsPl.append({
-            'recType': recordType,
-            'records': records,
-            'PL': [P, L]
-        })
+    recordsPl = extractPL(tg, extractedIndexesB)
 
     maxPandMinLRecord = getPL(recordsPl)
     maxPandMinLIndexes = extractIndexes(maxPandMinLRecord['records'])
@@ -65,15 +51,25 @@ for attr, value in Bs.items():
 
     # If pair in B - generate rule
     if pairInB:
-        # Write down rule, rewrite G (extractedIndexesB), and iterate one more time
-        print("Rule " + str(generateRule(maxPandMinLRecord, 'srednie')) + " has been generated!")
-        GENERATED_RULES.append(generateRule(maxPandMinLRecord, 'srednie'))
+        # Write down rule, rewrite G (extractedIndexesB), rewrite TG and iterate one more time
+        print("Rule " + str(generateRule(maxPandMinLRecord, currentRule)) + " has been generated!")
+        GENERATED_RULES.append(generateRule(maxPandMinLRecord, currentRule))
 
         updatedExtractedIndexesB = []
-        for x in extractedIndexesB:
-            if x not in maxPandMinLIndexes:
-                updatedExtractedIndexesB.append(x)
+        for ruleIndex in extractedIndexesB:
+            if ruleIndex not in maxPandMinLIndexes:
+                updatedExtractedIndexesB.append(ruleIndex)
         extractedIndexesB = updatedExtractedIndexesB
+
+        # Update TG below
+        updatedTG = {}
+        for t in tg:
+            if t != maxPandMinLRecord['recType']:
+                updatedTG[t] = tg[t]
+
+        updatedTG = extractPL(updatedTG, extractedIndexesB)
+
+        # lem(extractedIndexesB, tg)
     else:
         # Find record to unite
         print("maxPandMinLRecord: " + str(maxPandMinLRecord))
@@ -82,4 +78,11 @@ for attr, value in Bs.items():
     print('extractedIndexesB: ' + str(extractedIndexesB))
     print('------------')
 
-print(GENERATED_RULES)
+
+for attr, value in Bs.items():
+    ruleResult = attr
+    currentBs = value
+    lem(extractIndexes(currentBs), TG, ruleResult)
+
+
+printRules(GENERATED_RULES)

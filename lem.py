@@ -32,13 +32,13 @@ for x in range(INPUT_DATA_LENGTH):
                 Bs[attr].append({x + 1: DATA[x]})
 
 
-def lem(extractedIdx):
+def lem(extractedIdx, tg):
     extractedIndexesB = extractedIdx
 
     print("extractedIndexes: " + str(extractedIndexesB))
 
     # Extracting P and L
-    recordsPl = extractPL(TG, extractedIndexesB)
+    recordsPl = extractPL(tg, extractedIndexesB)
 
     maxPandMinLRecord = getPL(recordsPl)
     maxPandMinLIndexes = extractIndexes(maxPandMinLRecord['records'])
@@ -60,6 +60,8 @@ def lem(extractedIdx):
             if x not in maxPandMinLIndexes:
                 updatedExtractedIndexesB.append(x)
         extractedIndexesB = updatedExtractedIndexesB
+
+        # lem(extractedIndexesB, tg)
     else:
         # Find record to unite
         print("maxPandMinLRecord: " + str(maxPandMinLRecord))
@@ -72,7 +74,7 @@ def lem(extractedIdx):
 for attr, value in Bs.items():
     ruleResult = attr
     currentBs = value
-    lem(extractIndexes(currentBs))
+    lem(extractIndexes(currentBs), TG)
 
 
 printRules(GENERATED_RULES)

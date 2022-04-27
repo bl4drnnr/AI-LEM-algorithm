@@ -29,11 +29,3 @@ you can see generated rule for this record. For example, you see in `input.json`
 this outcome.
 
 ---
-
-```
-1 - IF Typ = kompakt THEN Zuzycie = srednie - [5, 6, 7]
-2 - IF Cena = akceptowalna AND Typ = duzy THEN Zuzycie = srednie - [1, 2]
-3 - IF Cena = akceptowalna AND Typ = duzy AND Typ = maly THEN Zuzycie = srednie - [1, 2, 8]
-4 - IF Typ = duzy AND Cena = wysoka THEN Zuzycie = wysokie - [3, 4, 10]
-5 - IF Typ = maly AND Cena = akceptowalna THEN Zuzycie = male - [8]
-```

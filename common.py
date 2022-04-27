@@ -107,5 +107,6 @@ def uniteRecords():
 
 
 def printRules(rules):
-    for rule in rules:
-        print(rule)
+    for i, rule in enumerate(rules):
+        print(f"{i + 1} - {rule['rule']} - {rule['records']}")
+

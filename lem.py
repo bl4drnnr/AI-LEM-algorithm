@@ -47,7 +47,10 @@ def lem(extractedIdx, tg, currentRule):
     # If pair in B - generate rule
     if pairInBres:
         # Write down rule, rewrite G (extractedIndexesB), rewrite TG and iterate one more time
-        GENERATED_RULES.append(generateRule([maxPandMinLRecord], currentRule))
+        GENERATED_RULES.append({
+            'rule': generateRule([maxPandMinLRecord], currentRule),
+            'records': maxPandMinLIndexes
+        })
 
         updatedExtractedIndexesB = []
         for ruleIndex in extractedIndexesB:
@@ -71,6 +74,7 @@ def lem(extractedIdx, tg, currentRule):
         newPairsIbB = pairInB(maxPandMinLIndexes, maxPandMinLRecord)
 
         if newPairsIbB:
+            print("New rule2: " + str(generateRule([maxPandMinLRecord], currentRule)))
             GENERATED_RULES.append(generateRule([maxPandMinLRecord], currentRule))
         else:
             unitedRecordsArray.append(maxPandMinLRecord)
@@ -93,7 +97,10 @@ def lem(extractedIdx, tg, currentRule):
 
             # Check if new common indexes are in B, and if it is, generate new rule
             newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
-            GENERATED_RULES.append(generateRule(unitedRecordsArray, currentRule))
+            GENERATED_RULES.append({
+                'rule': generateRule(unitedRecordsArray, currentRule),
+                'records': maxPandMinLIndexes
+            })
 
 
 for attr, value in Bs.items():

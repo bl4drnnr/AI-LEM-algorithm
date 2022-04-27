@@ -70,9 +70,16 @@ def lem(extractedIdx, tg, currentRule):
         print("Record to unite indexes: " + str(maxPandMinLIndexes))
         # Check for in pair in B
         newPairsIbB = pairInB(maxPandMinLIndexes, maxPandMinLRecord)
+
         if newPairsIbB:
             GENERATED_RULES.append(generateRule(maxPandMinLRecord, currentRule))
         else:
+            tempRecordsPL = []
+            for rec in recordsPl:
+                if rec != maxPandMinLRecord:
+                    tempRecordsPL.append(rec)
+            newPl = getPL(tempRecordsPL)
+            print(newPl)
             print("newPairsIbB: " + str(newPairsIbB))
 
     print('extractedIndexesB: ' + str(extractedIndexesB))

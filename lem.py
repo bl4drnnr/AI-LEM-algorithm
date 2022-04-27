@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs, parseName
-from common import getPL, extractIndexes, generateRule, extractPL, printRules
+from common import getPL, extractIndexes, generateRule, extractPL, printRules, pairInB
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -34,6 +34,7 @@ for x in range(INPUT_DATA_LENGTH):
 
 def lem(extractedIdx, tg, currentRule):
     extractedIndexesB = extractedIdx
+    unitedRecordsForNewPair = []
 
     print("extractedIndexes: " + str(extractedIndexesB))
 
@@ -43,14 +44,10 @@ def lem(extractedIdx, tg, currentRule):
     maxPandMinLRecord = getPL(recordsPl)
     maxPandMinLIndexes = extractIndexes(maxPandMinLRecord['records'])
 
-    pairInB = True
-
-    for idx in maxPandMinLIndexes:
-        if idx not in extractedIndexesB:
-            pairInB = False
+    pairInBres = pairInB(maxPandMinLIndexes, extractedIndexesB)
 
     # If pair in B - generate rule
-    if pairInB:
+    if pairInBres:
         # Write down rule, rewrite G (extractedIndexesB), rewrite TG and iterate one more time
         print("Rule " + str(generateRule(maxPandMinLRecord, currentRule)) + " has been generated!")
         GENERATED_RULES.append(generateRule(maxPandMinLRecord, currentRule))
@@ -67,16 +64,29 @@ def lem(extractedIdx, tg, currentRule):
             if t != maxPandMinLRecord['recType']:
                 updatedTG[t] = tg[t]
 
-        updatedTG = extractPL(updatedTG, extractedIndexesB)
-
-        # lem(extractedIndexesB, tg)
+        lem(extractedIndexesB, updatedTG, currentRule)
     else:
         # Find record to unite
-        print("maxPandMinLRecord: " + str(maxPandMinLRecord))
-        print("maxPandMinLIndexes: " + str(maxPandMinLIndexes))
+        print("Record to unite: " + str(maxPandMinLRecord))
+        print("Record to unite indexes: " + str(maxPandMinLIndexes))
+        # Check for in pair in B
+        newPairsIbB = pairInB(maxPandMinLIndexes, maxPandMinLRecord)
+
+        if newPairsIbB:
+            GENERATED_RULES.append(generateRule(maxPandMinLRecord, currentRule))
+        else:
+            # Unite records and check, if their indexes are in B
+            unitedRecordsForNewPair.append(maxPandMinLIndexes)
+            tempRecordsPL = []
+            for rec in recordsPl:
+                if rec != maxPandMinLRecord:
+                    tempRecordsPL.append(rec)
+            unitedRecordsForNewPair.append(extractIndexes(getPL(tempRecordsPL)['records']))
+            print(unitedRecordsForNewPair)
+            print("newPairsIbB: " + str(newPairsIbB))
 
     print('extractedIndexesB: ' + str(extractedIndexesB))
-    print('------------')
+    print('------END-----')
 
 
 for attr, value in Bs.items():

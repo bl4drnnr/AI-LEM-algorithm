@@ -74,6 +74,15 @@ def generateRule(record, result):
     return rule
 
 
+def pairInB(maxPandMinLIndexes, extractedIndexesB):
+    inB = True
+
+    for idx in maxPandMinLIndexes:
+        if idx not in extractedIndexesB:
+            inB = False
+    return inB
+
+
 def printRules(rules):
     for rule in rules:
         print(rule)

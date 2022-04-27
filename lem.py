@@ -99,7 +99,7 @@ def lem(extractedIdx, tg, currentRule):
             newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
             GENERATED_RULES.append({
                 'rule': generateRule(unitedRecordsArray, currentRule),
-                'records': maxPandMinLIndexes
+                'records': unitedRecordsCommonPart
             })
 
 

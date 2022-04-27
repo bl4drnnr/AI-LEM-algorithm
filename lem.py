@@ -36,8 +36,6 @@ def lem(extractedIdx, tg, currentRule):
     extractedIndexesB = extractedIdx
     unitedRecordsForNewPair = []
 
-    print("extractedIndexes: " + str(extractedIndexesB))
-
     # Extracting P and L
     recordsPl = extractPL(tg, extractedIndexesB)
 
@@ -49,9 +47,6 @@ def lem(extractedIdx, tg, currentRule):
     # If pair in B - generate rule
     if pairInBres:
         # Write down rule, rewrite G (extractedIndexesB), rewrite TG and iterate one more time
-        print("maxPandMinLRecord: " + str(maxPandMinLRecord))
-        print("currentRule: " + str(currentRule))
-        print("Rule " + str(generateRule([maxPandMinLRecord], currentRule)) + " has been generated!")
         GENERATED_RULES.append(generateRule([maxPandMinLRecord], currentRule))
 
         updatedExtractedIndexesB = []
@@ -72,8 +67,6 @@ def lem(extractedIdx, tg, currentRule):
         unitedRecordsArray = []
         # uniteRecords()
 
-        print("Record to unite: " + str(maxPandMinLRecord))
-        print("Record to unite indexes: " + str(maxPandMinLIndexes))
         # Check for in pair in B
         newPairsIbB = pairInB(maxPandMinLIndexes, maxPandMinLRecord)
 
@@ -100,10 +93,7 @@ def lem(extractedIdx, tg, currentRule):
 
             # Check if new common indexes are in B, and if it is, generate new rule
             newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
-            print(generateRule(unitedRecordsArray, currentRule))
-            print("newCommonIndexesInB: ", newCommonIndexesInB)
-
-    print('------END-----')
+            GENERATED_RULES.append(generateRule(unitedRecordsArray, currentRule))
 
 
 for attr, value in Bs.items():

@@ -68,9 +68,11 @@ def extractIndexes(arr):
 
 def generateRule(record, result):
     rule = "IF "
+
     deparsedName = deparseName(record['recType'])
     rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
     rule += " THEN " + str(KEY_ATTRIBUTE) + " = " + str(result)
+
     return rule
 
 
@@ -89,6 +91,10 @@ def indexesInB(B, indexes):
         if x not in B:
             newIndexesInB = False
     return newIndexesInB
+
+
+def uniteRecords():
+    return
 
 
 def printRules(rules):

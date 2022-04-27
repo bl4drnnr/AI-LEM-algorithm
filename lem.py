@@ -67,14 +67,6 @@ def lem(extractedIdx, tg, currentRule):
             if t != maxPandMinLRecord['recType']:
                 updatedTG[t] = tg[t]
 
-        print('Begin TG: ' + str(tg))
-        for attrr, valuue in tg.items():
-            print(attrr, valuue)
-        print('000000000000000000')
-        print('updatedTG: ' + str(updatedTG))
-        for attrrr, valuuue in updatedTG.items():
-            print(attrrr, valuuue)
-
         lem(extractedIndexesB, updatedTG, currentRule)
     else:
         # Find record to unite

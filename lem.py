@@ -67,39 +67,32 @@ def lem(extractedIdx, tg, currentRule):
         lem(extractedIndexesB, updatedTG, currentRule)
     else:
         # Find record to unite
-        unitedRecordsArray = []
-        # uniteRecords()
+        uniteRecords()
+        unitedRecordsArray = [maxPandMinLRecord]
 
-        # Check for in pair in B
-        newPairsIbB = pairInB(maxPandMinLIndexes, maxPandMinLRecord)
+        # Unite records and check, if their indexes are in B
+        unitedRecordsForNewPair.append(maxPandMinLIndexes)
+        tempRecordsPL = []
+        for rec in recordsPl:
+            if rec != maxPandMinLRecord:
+                tempRecordsPL.append(rec)
+        unitedRecordsArray.append(getPL(tempRecordsPL))
+        unitedRecordsForNewPair.append(extractIndexes(getPL(tempRecordsPL)['records']))
 
-        if newPairsIbB:
-            GENERATED_RULES.append(generateRule([maxPandMinLRecord], currentRule))
-        else:
-            unitedRecordsArray.append(maxPandMinLRecord)
-            # Unite records and check, if their indexes are in B
-            unitedRecordsForNewPair.append(maxPandMinLIndexes)
-            tempRecordsPL = []
-            for rec in recordsPl:
-                if rec != maxPandMinLRecord:
-                    tempRecordsPL.append(rec)
-            unitedRecordsArray.append(getPL(tempRecordsPL))
-            unitedRecordsForNewPair.append(extractIndexes(getPL(tempRecordsPL)['records']))
+        # United records common part
+        unitedRecordsCommonPart = []
+        for a in unitedRecordsForNewPair[0]:
+            for b in unitedRecordsForNewPair[1:]:
+                for ixd in b:
+                    if ixd == a:
+                        unitedRecordsCommonPart.append(a)
 
-            # United records common part
-            unitedRecordsCommonPart = []
-            for a in unitedRecordsForNewPair[0]:
-                for b in unitedRecordsForNewPair[1:]:
-                    for ixd in b:
-                        if ixd == a:
-                            unitedRecordsCommonPart.append(a)
-
-            # Check if new common indexes are in B, and if it is, generate new rule
-            newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
-            GENERATED_RULES.append({
-                'rule': generateRule(unitedRecordsArray, currentRule),
-                'records': unitedRecordsCommonPart
-            })
+        # Check if new common indexes are in B, and if it is, generate new rule
+        newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
+        GENERATED_RULES.append({
+            'rule': generateRule(unitedRecordsArray, currentRule),
+            'records': unitedRecordsCommonPart
+        })
 
 
 for attr, value in Bs.items():

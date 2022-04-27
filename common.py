@@ -66,11 +66,15 @@ def extractIndexes(arr):
     return indexes
 
 
-def generateRule(record, result):
+def generateRule(records, result):
     rule = "IF "
-    deparsedName = deparseName(record['recType'])
-    rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
+
+    for rec in records:
+        deparsedName = deparseName(rec['recType'])
+        rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
+
     rule += " THEN " + str(KEY_ATTRIBUTE) + " = " + str(result)
+
     return rule
 
 
@@ -81,6 +85,18 @@ def pairInB(maxPandMinLIndexes, extractedIndexesB):
         if idx not in extractedIndexesB:
             inB = False
     return inB
+
+
+def indexesInB(B, indexes):
+    newIndexesInB = True
+    for x in indexes:
+        if x not in B:
+            newIndexesInB = False
+    return newIndexesInB
+
+
+def uniteRecords():
+    return
 
 
 def printRules(rules):

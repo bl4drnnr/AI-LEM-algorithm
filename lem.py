@@ -96,9 +96,7 @@ def lem(extractedIdx, tg, currentRule):
 
 
 for attr, value in Bs.items():
-    ruleResult = attr
-    currentBs = value
-    lem(extractIndexes(currentBs), TG, ruleResult)
+    lem(extractIndexes(value), TG, attr)
 
 
 printRules(GENERATED_RULES)

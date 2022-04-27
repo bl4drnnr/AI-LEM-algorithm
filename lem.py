@@ -74,7 +74,6 @@ def lem(extractedIdx, tg, currentRule):
         newPairsIbB = pairInB(maxPandMinLIndexes, maxPandMinLRecord)
 
         if newPairsIbB:
-            print("New rule2: " + str(generateRule([maxPandMinLRecord], currentRule)))
             GENERATED_RULES.append(generateRule([maxPandMinLRecord], currentRule))
         else:
             unitedRecordsArray.append(maxPandMinLRecord)

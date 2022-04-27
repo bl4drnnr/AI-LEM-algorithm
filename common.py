@@ -69,8 +69,15 @@ def extractIndexes(arr):
 def generateRule(records, result):
     rule = "IF "
 
-    for rec in records:
-        deparsedName = deparseName(rec['recType'])
+    if len(records) > 1:
+        for i, rec in enumerate(records):
+            deparsedName = deparseName(rec['recType'])
+            if i != len(records) - 1:
+                rule += str(deparsedName[0]) + " = " + str(deparsedName[1]) + " AND "
+            else:
+                rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
+    else:
+        deparsedName = deparseName(records[0]['recType'])
         rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
 
     rule += " THEN " + str(KEY_ATTRIBUTE) + " = " + str(result)

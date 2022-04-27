@@ -34,6 +34,7 @@ for x in range(INPUT_DATA_LENGTH):
 
 def lem(extractedIdx, tg, currentRule):
     extractedIndexesB = extractedIdx
+    unitedRecordsForNewPair = []
 
     print("extractedIndexes: " + str(extractedIndexesB))
 
@@ -74,12 +75,14 @@ def lem(extractedIdx, tg, currentRule):
         if newPairsIbB:
             GENERATED_RULES.append(generateRule(maxPandMinLRecord, currentRule))
         else:
+            # Unite records and check, if their indexes are in B
+            unitedRecordsForNewPair.append(maxPandMinLIndexes)
             tempRecordsPL = []
             for rec in recordsPl:
                 if rec != maxPandMinLRecord:
                     tempRecordsPL.append(rec)
-            newPl = getPL(tempRecordsPL)
-            print(newPl)
+            unitedRecordsForNewPair.append(extractIndexes(getPL(tempRecordsPL)['records']))
+            print(unitedRecordsForNewPair)
             print("newPairsIbB: " + str(newPairsIbB))
 
     print('extractedIndexesB: ' + str(extractedIndexesB))

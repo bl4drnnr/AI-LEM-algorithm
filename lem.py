@@ -68,6 +68,9 @@ def lem(extractedIdx, tg, currentRule):
         # Find record to unite
         print("Record to unite: " + str(maxPandMinLRecord))
         print("Record to unite indexes: " + str(maxPandMinLIndexes))
+        # Check for in pair in B
+        newPairsIbB = pairInB(maxPandMinLIndexes, maxPandMinLRecord)
+        print("newPairsIbB: " + str(newPairsIbB))
 
     print('extractedIndexesB: ' + str(extractedIndexesB))
     print('------END-----')

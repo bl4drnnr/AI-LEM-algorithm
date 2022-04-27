@@ -95,7 +95,6 @@ def lem(extractedIdx, tg, currentRule):
             newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
             print("newCommonIndexesInB: ", newCommonIndexesInB)
 
-    print('extractedIndexesB: ' + str(extractedIndexesB))
     print('------END-----')
 
 

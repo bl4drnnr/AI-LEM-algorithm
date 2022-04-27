@@ -67,32 +67,7 @@ def lem(extractedIdx, tg, currentRule):
         lem(extractedIndexesB, updatedTG, currentRule)
     else:
         # Find record to unite
-        uniteRecords()
-        unitedRecordsArray = [maxPandMinLRecord]
-
-        # Unite records and check, if their indexes are in B
-        unitedRecordsForNewPair.append(maxPandMinLIndexes)
-        tempRecordsPL = []
-        for rec in recordsPl:
-            if rec != maxPandMinLRecord:
-                tempRecordsPL.append(rec)
-        unitedRecordsArray.append(getPL(tempRecordsPL))
-        unitedRecordsForNewPair.append(extractIndexes(getPL(tempRecordsPL)['records']))
-
-        # United records common part
-        unitedRecordsCommonPart = []
-        for a in unitedRecordsForNewPair[0]:
-            for b in unitedRecordsForNewPair[1:]:
-                for ixd in b:
-                    if ixd == a:
-                        unitedRecordsCommonPart.append(a)
-
-        # Check if new common indexes are in B, and if it is, generate new rule
-        newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
-        GENERATED_RULES.append({
-            'rule': generateRule(unitedRecordsArray, currentRule),
-            'records': unitedRecordsCommonPart
-        })
+        uniteRecords(GENERATED_RULES, currentRule, extractedIndexesB, maxPandMinLRecord, maxPandMinLIndexes, unitedRecordsForNewPair, recordsPl)
 
 
 for attr, value in Bs.items():

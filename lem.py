@@ -82,7 +82,17 @@ def lem(extractedIdx, tg, currentRule):
                 if rec != maxPandMinLRecord:
                     tempRecordsPL.append(rec)
             unitedRecordsForNewPair.append(extractIndexes(getPL(tempRecordsPL)['records']))
-            print(unitedRecordsForNewPair)
+
+            # United records common part
+            unitedRecordsCommonPart = []
+            for a in unitedRecordsForNewPair[0]:
+                for b in unitedRecordsForNewPair[1:]:
+                    for ixd in b:
+                        if ixd == a:
+                            unitedRecordsCommonPart.append(a)
+
+            print("unitedRecordsForNewPair: " + str(unitedRecordsForNewPair))
+            print("unitedRecordsCommonPart: " + str(unitedRecordsCommonPart))
             print("newPairsIbB: " + str(newPairsIbB))
 
     print('extractedIndexesB: ' + str(extractedIndexesB))

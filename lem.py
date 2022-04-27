@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs, parseName
-from common import getPL, extractIndexes, generateRule, extractPL, printRules
+from common import getPL, extractIndexes, generateRule, extractPL, printRules, pairInB
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -43,14 +43,10 @@ def lem(extractedIdx, tg, currentRule):
     maxPandMinLRecord = getPL(recordsPl)
     maxPandMinLIndexes = extractIndexes(maxPandMinLRecord['records'])
 
-    pairInB = True
-
-    for idx in maxPandMinLIndexes:
-        if idx not in extractedIndexesB:
-            pairInB = False
+    pairInBres = pairInB(maxPandMinLIndexes, extractedIndexesB)
 
     # If pair in B - generate rule
-    if pairInB:
+    if pairInBres:
         # Write down rule, rewrite G (extractedIndexesB), rewrite TG and iterate one more time
         print("Rule " + str(generateRule(maxPandMinLRecord, currentRule)) + " has been generated!")
         GENERATED_RULES.append(generateRule(maxPandMinLRecord, currentRule))

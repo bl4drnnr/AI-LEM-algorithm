@@ -70,9 +70,12 @@ def generateRule(records, result):
     rule = "IF "
 
     if len(records) > 1:
-        for rec in records:
+        for i, rec in enumerate(records):
             deparsedName = deparseName(rec['recType'])
-            rule += " " + str(deparsedName[0]) + " = " + str(deparsedName[1])
+            if i != len(records) - 1:
+                rule += str(deparsedName[0]) + " = " + str(deparsedName[1]) + " AND "
+            else:
+                rule += str(deparsedName[0]) + " = " + str(deparsedName[1])
     else:
         deparsedName = deparseName(records[0]['recType'])
         rule += str(deparsedName[0]) + " = " + str(deparsedName[1])

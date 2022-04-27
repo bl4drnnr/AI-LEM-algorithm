@@ -70,8 +70,8 @@ def lem(extractedIdx, tg, currentRule):
         lem(extractedIndexesB, updatedTG, currentRule)
     else:
         # Find record to unite
-        print("maxPandMinLRecord: " + str(maxPandMinLRecord))
-        print("maxPandMinLIndexes: " + str(maxPandMinLIndexes))
+        print("Record to unite: " + str(maxPandMinLRecord))
+        print("Record to unite indexes: " + str(maxPandMinLIndexes))
 
     print('extractedIndexesB: ' + str(extractedIndexesB))
     print('------END-----')

@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs, parseName
-from common import getPL, extractIndexes, generateRule, extractPL, printRules, pairInB
+from common import getPL, extractIndexes, generateRule, extractPL, printRules, pairInB, indexesInB
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
@@ -91,9 +91,9 @@ def lem(extractedIdx, tg, currentRule):
                         if ixd == a:
                             unitedRecordsCommonPart.append(a)
 
-            print("unitedRecordsForNewPair: " + str(unitedRecordsForNewPair))
-            print("unitedRecordsCommonPart: " + str(unitedRecordsCommonPart))
-            print("newPairsIbB: " + str(newPairsIbB))
+            # Check if new common indexes are in B
+            newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
+            print("newCommonIndexesInB: ", newCommonIndexesInB)
 
     print('extractedIndexesB: ' + str(extractedIndexesB))
     print('------END-----')

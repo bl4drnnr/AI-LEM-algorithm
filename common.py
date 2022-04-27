@@ -83,6 +83,14 @@ def pairInB(maxPandMinLIndexes, extractedIndexesB):
     return inB
 
 
+def indexesInB(B, indexes):
+    newIndexesInB = True
+    for x in indexes:
+        if x not in B:
+            newIndexesInB = False
+    return newIndexesInB
+
+
 def printRules(rules):
     for rule in rules:
         print(rule)

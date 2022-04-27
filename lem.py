@@ -67,7 +67,13 @@ def lem(extractedIdx, tg, currentRule):
         lem(extractedIndexesB, updatedTG, currentRule)
     else:
         # Find record to unite
-        uniteRecords(GENERATED_RULES, currentRule, extractedIndexesB, maxPandMinLRecord, maxPandMinLIndexes, unitedRecordsForNewPair, recordsPl)
+        uniteRecords(GENERATED_RULES,
+                     currentRule,
+                     extractedIndexesB,
+                     maxPandMinLRecord,
+                     maxPandMinLIndexes,
+                     unitedRecordsForNewPair,
+                     recordsPl)
 
 
 for attr, value in Bs.items():

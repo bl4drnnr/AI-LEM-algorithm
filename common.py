@@ -107,27 +107,42 @@ def uniteRecords(GENERATED_RULES, currentRule, extractedIndexesB, maxPandMinLRec
 
     # Unite records and check, if their indexes are in B
     unitedRecordsForNewPair.append(maxPandMinLIndexes)
-    tempRecordsPL = []
-    for rec in recordsPl:
-        if rec != maxPandMinLRecord:
-            tempRecordsPL.append(rec)
-    unitedRecordsArray.append(getPL(tempRecordsPL))
-    unitedRecordsForNewPair.append(extractIndexes(getPL(tempRecordsPL)['records']))
 
-    # United records common part
+    unitedRecordsCommonPart = uniteRecordsUpdating(recordsPl, unitedRecordsArray, unitedRecordsForNewPair, GENERATED_RULES, currentRule)
+
+    # Check if new common indexes are in B, and if it is, generate new rule
+    # newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
+
+    updatedTg = []
+    for x in extractedIndexesB:
+        if x not in unitedRecordsCommonPart:
+            updatedTg.append(x)
+
+    if len(updatedTg) > 0:
+        uniteRecordsUpdating(recordsPl, unitedRecordsArray, unitedRecordsForNewPair, GENERATED_RULES, currentRule)
+
+
+def uniteRecordsUpdating(recordsPl, unitedRecordsArray, unitedRecordsForNewPair, GENERATED_RULES, currentRule):
+    updTg = []
+    for rec in recordsPl:
+        if rec not in unitedRecordsArray:
+            updTg.append(rec)
+
+    unitedRecordsArray.append(getPL(updTg))
+    unitedRecordsForNewPair.append(extractIndexes(getPL(updTg)['records']))
     unitedRecordsCommonPart = []
+
     for a in unitedRecordsForNewPair[0]:
         for b in unitedRecordsForNewPair[1:]:
             for ixd in b:
                 if ixd == a:
                     unitedRecordsCommonPart.append(a)
 
-    # Check if new common indexes are in B, and if it is, generate new rule
-    newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
     GENERATED_RULES.append({
         'rule': generateRule(unitedRecordsArray, currentRule),
         'records': unitedRecordsCommonPart
     })
+    return unitedRecordsCommonPart
 
 
 def printRules(rules):

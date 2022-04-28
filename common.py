@@ -110,16 +110,42 @@ def uniteRecords(GENERATED_RULES, currentRule, extractedIndexesB, maxPandMinLRec
 
     unitedRecordsCommonPart = uniteRecordsUpdating(recordsPl, unitedRecordsArray, unitedRecordsForNewPair, GENERATED_RULES, currentRule)
 
-    # Check if new common indexes are in B, and if it is, generate new rule
-    # newCommonIndexesInB = indexesInB(extractedIndexesB, unitedRecordsCommonPart)
-
     updatedTg = []
     for x in extractedIndexesB:
         if x not in unitedRecordsCommonPart:
             updatedTg.append(x)
 
     if len(updatedTg) > 0:
-        uniteRecordsUpdating(recordsPl, unitedRecordsArray, unitedRecordsForNewPair, GENERATED_RULES, currentRule)
+        updTg = []
+        for rec in recordsPl:
+            if extractIndexes(rec['records']) not in unitedRecordsForNewPair:
+                updTg.append(rec)
+        for i in updTg:
+            i['PL'] = [0, 0]
+            for updTgInx in updatedTg:
+                if updTgInx in extractIndexes(i['records']):
+                    i['PL'][0] += 1
+            i['PL'][1] = len(extractIndexes(i['records']))
+        unitedRecordsIndexes = []
+
+        for x in updTg:
+            t = True
+            for y in updatedTg:
+                if y not in extractIndexes(x['records']):
+                    t = False
+            if t:
+                unitedRecordsIndexes.append(extractIndexes(x['records']))
+
+        uni = []
+        for uri in unitedRecordsIndexes:
+            for utg in updTg:
+                if extractIndexes(utg['records']) == uri:
+                    uni.append(utg)
+
+        GENERATED_RULES.append({
+            'rule': generateRule(uni, currentRule),
+            'records': updatedTg
+        })
 
 
 def uniteRecordsUpdating(recordsPl, unitedRecordsArray, unitedRecordsForNewPair, GENERATED_RULES, currentRule):

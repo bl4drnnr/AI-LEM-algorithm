@@ -24,6 +24,7 @@
       "Predkosc": "duza",
       "Zuzycie": "wysokie"
     },
+
     {
       "Typ": "kompakt",
       "Cena": "akceptowalna",
@@ -39,9 +40,10 @@
     {
       "Typ": "kompakt",
       "Cena": "wysoka",
-      "Predkosc": "wolny",
+      "Predkosc": "mala",
       "Zuzycie": "srednie"
     },
+
     {
       "Typ": "maly",
       "Cena": "akceptowalna",
@@ -53,6 +55,12 @@
       "Cena": "wysoka",
       "Predkosc": "mala",
       "Zuzycie": "srednie"
+    },
+    {
+      "Typ": "maly",
+      "Cena": "akceptowalna",
+      "Predkosc": "mala",
+      "Zuzycie": "male"
     },
     {
       "Typ": "duzy",

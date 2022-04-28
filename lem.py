@@ -1,5 +1,5 @@
 from parser import parseInputData, getAllPossibleAttributes, getKeyAttribute, getParsedPairs, parseName
-from common import getPL, extractIndexes, generateRule, extractPL, printRules, pairInB, indexesInB, uniteRecords
+from common import getPL, extractIndexes, generateRule, extractPL, printRules, pairInB, uniteRecords
 DATA = parseInputData()
 KEY_ATTRIBUTE = getKeyAttribute()
 ALL_POSSIBLE_ATTRIBUTES = getAllPossibleAttributes()
